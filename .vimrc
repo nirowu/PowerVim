@@ -2,6 +2,7 @@
 "
 " 定义快捷键的前缀，即<Leader>
 let mapleader=";"
+inoremap jk <ESC>
 
 " pathogen plugin manager
 execute pathogen#infect()
@@ -40,7 +41,7 @@ set nocp
 "set encoding=utf-8
 ""set encoding=gb2312
 set langmenu=zh_CN.gb2312
-language message zh_CN.gb2312
+"language message zh_CN.gb2312
 
 set fileencoding=gbk2312
 set ts=4
@@ -243,14 +244,15 @@ autocmd filetype java nnoremap <F2> :w <bar> exec '!java -cp ./bin '.shellescape
 let g:tlist_markdown_settings = 'markdown;h:Headlins'
 "新建.c,.h,.sh,.Java文件，自动插入文件头
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.Java,*.go exec ":call SetTitle()"
+autocmd BufNewFile * normal G 
 """定义函数SetTitle，自动插入文件头
 func SetTitle()
     "如果文件类型为.sh文件
     if &filetype == 'sh'
         call setline(1,"\#########################################################################")
         call append(line("."),   "\# File Name:    ".expand("%"))
-        call append(line(".")+1, "\# Author:       程序员Carl")
-        call append(line(".")+2, "\# mail:         programmercarl@163.com")
+        call append(line(".")+1, "\# Author:       nirowu")
+        call append(line(".")+2, "\# mail:         vivianwu203@gmail.com")
         call append(line(".")+3, "\# Created Time: ".strftime("%c"))
         call append(line(".")+4, "\#########################################################################")
         call append(line(".")+5, "\#!/bin/bash")
@@ -258,12 +260,11 @@ func SetTitle()
     else
         call setline(1, "/* ************************************************************************")
         call append(line("."),   "> File Name:     ".expand("%"))
-        call append(line(".")+1, "> Author:        程序员Carl")
-        call append(line(".")+2, "> 微信公众号:    代码随想录")
-        call append(line(".")+3, "> Created Time:  ".strftime("%c"))
-        call append(line(".")+4, "> Description:   ")
-        call append(line(".")+5, " ************************************************************************/")
-        call append(line(".")+6, "")
+        call append(line(".")+1, "> Author:        nirowu")
+        call append(line(".")+2, "> Created Time:  ".strftime("%c"))
+        call append(line(".")+3, "> Description:   ")
+        call append(line(".")+4, " ************************************************************************/")
+        call append(line(".")+5, "")
     endif
     "新建文件后，自动定位到文件末尾
     autocmd BufNewFile * normal G
